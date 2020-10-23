@@ -1,42 +1,50 @@
-const splitting = () => {
+// Splitting the bill function
+const splitting = function() {
     let total = parseInt(document.querySelector('#total').value);
     let people = parseInt(document.querySelector('#people').value);
     let tipPercent = document.querySelector('#tipPercent')
-    
-    if (tipPercent.value !== "") {  
-      let calcPercent = parseInt(tipPercent.value)
-      const totalWithTip = total + (calcPercent * total) / 100;
-      document.querySelector('#perPerson').innerHTML = (totalWithTip / people).toFixed(2);
+
+if(tipPercent.value !== '') {
+   let calcPercent = parseInt(tipPercent.value);
+   const totalWithTip = total + (calcPercent * total) / 100;
+   document.querySelector('#perPerson').innerHTML = (totalWithTip / people).toFixed(2);
     } 
     else {
-      const result = total / people;
-      document.querySelector('#perPerson').innerHTML = result.toFixed(2);
+       const noTip = total / people;
+       document.querySelector('#perPerson').innerHTML = noTip.toFixed(2);
     }
-   }
-  
-  document.querySelector('#addTip').addEventListener('click', (e) => {
-    e.preventDefault();
-    showTipInput();
-  })
-  
-  const showTipInput = () => {
+}
+// event listener for 'Add a tip'
+let addTip = document.querySelector('#addTip');
+addTip.addEventListener('click', addTips);
+function addTips(e){
+e.preventDefault();
+showTipInput();
+}
+
+// function to bring out the input box after you press add tip
+const showTipInput = function(e) {
     const tipBtns = document.querySelector('#tipInput')
-    if (tipBtns.style.display === "block") {
-      tipBtns.style.display = "none"
+    if(tipBtns.style.display === 'block') {
+        tipBtns.style.display = 'none';
     } else {
-      tipBtns.style.display = "block"
+        tipBtns.style.display = 'block';
     }
-  }
-  
-  
-  const splitBtn = document.querySelector('#splitBtn')
-    splitBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      splitting();
-  })
-  
-  document.querySelector('#resetBtn').addEventListener('click', (e) => {
+}
+
+// event listener for split button and calling the splitting function inside the button
+const splitBtn = document.querySelector('#splitBtn')
+splitBtn.addEventListener('click', splitBill);
+function splitBill(e){
+    e.preventDefault();
+    splitting();
+}
+
+//reset button deleting data off of forms and resetting the #perPerson value to 0
+const resetBtn = document.querySelector('#resetBtn');
+resetBtn.addEventListener('click', resetButton);
+function resetButton(e) {
     e.preventDefault();
     document.querySelector('form').reset();
-    document.querySelector('#perPerson').innerHTML = "0"
-  })
+    document.querySelector('#perPerson').innerHTML = 0;
+}
