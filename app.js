@@ -23,10 +23,10 @@ showTipInput();
 }
 
 // function to bring out the input box after you press add tip
-const showTipInput = function(e) {
+function showTipInput(){
     const tipValue = document.querySelector('#tipInput')
-    if(tipValue.style.display === 'block') {
-        tipValue.style.display = 'none';
+    if(tipValue.style.display === 'block'){
+        tipValue.style.display = 'none'
     } else {
         tipValue.style.display = 'block';
     }
